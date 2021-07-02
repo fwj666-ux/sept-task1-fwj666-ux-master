@@ -26,68 +26,127 @@
       ##项目运行过程分析：
 
       *运行主函数时，自动创建一个Game类对象，同时会调用Game类的createRoom方法,然后调用Game类的play方法
+
       *createRoom方法调用Room类创建房间并建立对应房间的描述，并规定程序运行开始时处于outside
+
       *play方法首先调用printWelcome()方法，对玩家表示欢迎并给出相应操作的提示，然后用户输入命令字符串，由parser类中的私有成员变量read记录
+
       *进入循环，调用parser类的getCommand()方法,将用户输入的字符串命令传入变量，并将输入的字符串分为两个单词分别保存在Word1，Word2之中
+
       *将firstWord、secondWord作为参数传入command（）方法中进行赋值
+
       *判断两个词是否为空
+
       *进入processCommand首先判断输入的命令的第一个单词是否为空，若为空则输出不识别用户命令，将返回值false传给finished，使程序继续运行。
+
       *若第一个单词不为空，将第一个单词进行与help，go，quit进行比较。
+
       *若与help相同，调用printHelp方法，输出对应话语，调用showCommands方法提示玩家可以进行的操作
+
       *若与go相同，调用goRoom方法并执行，判断是否有第二个单词，如果没有输出go where？提示用户输入去的方向，
        若有，与可去方向比对，相同就进入对应房间并输出该房间的描述和可去方向，若没有则提示用户这个方向没有们，并让用户再次输入。
+
       *若与quit相同，调用quit方法，将wantToQuit赋值为true，结束运行
 
     * 以UML图描述样例工程的组成及结构图（类及类之间的关系）
+
         * 可结合markdown语法和mermaid插件绘制所需uml图形
+
           classDiagram
+
           Command <|--Parser
+
           CommandWords<|--Parser
+
           Parser<|--Game
+
           Room<|--Game
+
           Game<|--Main
+
           class Game{
+
           +Room currentRoom
+
           +createRooms()
+
           +play()
+
           +printWelcome()
+
           +processCommand()
+
           +printHelp()
+
           +goRoom()
+
           +quit()
+
           }
+
           class Command{
+
           +String commandWord
+
           +String secondWord
+
           +getCommandWord()
+
           +getSecondWord()
+
           +isUnknown()
+
           +hasSecondWord()
+
           }
           class CommandWords{
+
           +String[] validCommands
+
           +CommandWords()
+
           +isCommand(final String aString)
+
           +showAll()
+
           }
+
           class Parser{
+
           +CommandWords commands
+
           +Scanner reader
+
           +Parser()
+
           +Command getCommand()
+
           +showCommands()
+
           }
+
           class Room{
+
           +String description
+
           +Room(String description1)
+
           +setExit(String direction, Room neighbor)
+
           +String getShortDescription()
+
           +String getLongDescription()
+
           +String getExitString()
+
           +Room getExit(String direction)
+
           }
+
           class Main{
+
           +Main()
+
           } 
          
 2. 标注样例工程中的代码
@@ -103,31 +162,50 @@
 在Game类的processCommand()方法中，当用户输入的命令被辨认出来以后，有一系列的if语句用来分派程序到不同的地方去执行。
 从面向对象的设计原则来看，这种解决方案不太好，因为每当要加入一个新的命令时，就得在这一堆if语句中再加入一个if分支，
 最终会导致这个方法的代码膨胀得极其臃肿
+
 可用switch语句替换点多次if，else语句
 
 *修改前的代码
 
 String commandWord = command.getCommandWord();
+
 if (commandWord.equals("help")) {
+
 printHelp();
+
 } else if (commandWord.equals("go")) {
+
 goRoom(command);
+
 } else if (commandWord.equals("quit")) {
+
 wantToQuit = quit(command);
+
 }
 
 *修改后的代码
 
 String commandWord = command.getCommandWord();
+
 switch (commandWord){
+
 case "help":
+
   printHelp();
+
    break;
+
 case "go":
+
   goRoom(command);
+
       break;
+
 case "quit":
+
   wantToQuit=quit(command);
+
          break;
+
 }
 
