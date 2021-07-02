@@ -104,56 +104,7 @@
     * 基于javadoc规范标注代码，对包、类、方法、代码片段、参数和语句等代码层次进行注释（可参考Game类的标注样例）；
       下面截取其中几个方法的注释标识如下
       
-      /**
-* 创建游戏并初始化内部数据和解析器.
-  */
-  public Game() {
-  createRooms();
-  parser = new Parser();
-  }
-
-/**
-*  游戏主循环，直到用户输入退出命令后结束.
-*/
-public void play() {
-printWelcome();
-
-        // Enter the main command loop.  Here we repeatedly read commands and
-        // execute them until the game is over.
-
-        boolean finished = false;
-        while (!finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-        System.out.println("Thank you for playing.  Good bye.");
-    }
-
-/**
-* 执行用户输入的游戏指令.
-* @param command 待处理的游戏指令，由解析器从用户输入内容生成.
-* @return 如果执行的是游戏结束指令，则返回true，否则返回false.
-*/
-private boolean processCommand(final Command ){
-boolean wantToQuit = false;
-
-        if (command.isUnknown()) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
-
-        String commandWord = command.getCommandWord();
-        if (commandWord.equals("help")) {
-            printHelp();
-        } else if (commandWord.equals("go")) {
-            goRoom(command);
-        } else if (commandWord.equals("quit")) {
-            wantToQuit = quit(command);
-        }
-        // else command not recognised.
-        return wantToQuit;
-    }
-
+    
     * 注释后的代码提交到本地代码库后，同步推送到远程代码仓库；
     * 可参考ESLint、github/super-linter等开发插件了解关于代码规范的相关知识；
 
