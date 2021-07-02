@@ -121,7 +121,7 @@ public class Game {
         优化后的代码如下
          */
         String commandWord = command.getCommandWord();
-        switch (commandWord){
+        switch (commandWord) {
             case "help":
                 printHelp();
                 break;
@@ -129,7 +129,7 @@ public class Game {
                 goRoom(command);
                 break;
             case "quit":
-                wantToQuit=quit(command);
+                wantToQuit = quit(command);
                 break;
         }
         // else command not recognised.
