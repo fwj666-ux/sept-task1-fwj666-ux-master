@@ -19,9 +19,9 @@
 1. 阅读和描述样例工程
 
     * fork样例工程，并clone到本地仓库
-      ![](picture/1.PNG)
+      ![](./picture/1.PNG)
     * 在本地开发环境上运行样例工程，理解样例工程的代码逻辑；
-      ![](picture/2.PNG)
+      ![](./picture/2.PNG)
       
 * 精读样例工程软件代码，描述代码结构及部件组成；
   ##项目运行过程分析：
@@ -91,6 +91,7 @@
           class Main{
           +Main()
           } 
+                ![](./picture/4.PNG)
 2. 标注样例工程中的代码
 
     * 基于javadoc规范标注代码，对包、类、方法、代码片段、参数和语句等代码层次进行注释（可参考Game类的标注样例）；
@@ -151,7 +152,7 @@ boolean wantToQuit = false;
 * 可参考ESLint、github/super-linter等开发插件了解关于代码规范的相关知识；
   CheckSytle-IDEA 插件(针对IntelliJ IDEA开发环境)，并针对java源代码文件开启“Sun Checks”规则检查，       
   针对代码中出现的注释、分行、缩进、括号位置、变量声明、方法声明等等格式警告进行代码格式规范整理；     
-  ![](picture/3.PNG)
+  ![](./picture/3.PNG)
 ###代码设计缺陷
 
 * Game类的processCommand()方法中，当用户输入的命令被辨认出来以后，有一系列的if语句用来分派程序到不同的地方去执行。
