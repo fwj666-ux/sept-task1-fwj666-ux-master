@@ -169,23 +169,42 @@ boolean wantToQuit = false;
 String commandWord = command.getCommandWord();
 
 if (commandWord.equals("help")) {
+
 printHelp();
+
 } else if (commandWord.equals("go")) {
+
 goRoom(command);
+
 } else if (commandWord.equals("quit")) {
+
 wantToQuit = quit(command);
+
 }
+
 *修改后的代码
+
 String commandWord = command.getCommandWord();
+
 switch (commandWord){
+
 case "help":
+
   printHelp();
+
    break;
+
 case "go":
+
   goRoom(command);
+
       break;
+
 case "quit":
+
   wantToQuit=quit(command);
+
          break;
+
 }
 
